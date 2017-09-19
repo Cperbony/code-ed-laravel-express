@@ -1,5 +1,6 @@
 <?php
 
+use App\Post;
 use Illuminate\Database\Seeder;
 
 class PostsTableSeeder extends Seeder
@@ -11,8 +12,9 @@ class PostsTableSeeder extends Seeder
      */
     public function run()
     {
-        \App\Post::truncate();
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
+        Post::truncate();
 
-        factory('App\Post', 15) -> create();
+        factory(Post::class, 15) -> create();
     }
 }
